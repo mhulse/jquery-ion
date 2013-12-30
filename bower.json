@@ -1,0 +1,20 @@
+{
+    "name": "ion",
+    "version": "0.1.0",
+    "main": [
+        "./ion/jquery.ion.js"
+    ],
+    "ignore": [
+        "build",
+        "demo",
+        "**/.*",
+        "**/*.md",
+        "**/*.json"
+    ],
+    "dependencies": {},
+    "devDependencies": {},
+    "keywords": [
+        "jquery",
+        "javascript"
+    ]
+}

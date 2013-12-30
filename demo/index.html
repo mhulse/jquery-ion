@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+	
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Ion</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	
+	<style>
+		
+		/*-----------------( DEMO ONLY )-----------------*/
+		
+		body { padding: 10px; }
+		
+		@media all and (min-width : 480px) {
+			
+			body { padding: 50px; }
+			
+		}
+		
+		body > h1 { text-align: center; }
+		
+		h1 { margin: 0 0 10px; }
+		
+		footer p {
+			text-align: right;
+			margin: 5px 0 0;
+		}
+		
+		/*-----------------( ACCORDION SKIN )-----------------*/
+		
+		@media all and (min-width : 480px) {
+			
+		}
+		
+		/*-----------------( ACCORDION PANEL )-----------------*/
+		
+		.panel {}
+		
+		/*-----------------( UTILITY )-----------------*/
+		
+		.js .off { display: none; }
+		
+	</style>
+	
+	<script>/*! rgne.ws/WnP50T */;(function(a){a.className=a.className.replace(/\bno-js\b/,'js')}(document.documentElement));</script>
+	
+</head>
+<body>
+	
+	<h1><a href="https://github.com/mhulse/ion">Ion</a> demo</h1>
+	
+	<hr>
+	
+	<section>
+		
+		<h1>FOO, BAR &amp; BAZ</h1>
+		
+		<p>...</p>
+		
+	</section>
+	
+	<footer>
+		
+		<p><small>Why reinvent the wheel, you ask? Because I enjoy <a href="http://www.codinghorror.com/blog/2009/02/dont-reinvent-the-wheel-unless-you-plan-on-learning-more-about-wheels.html">learning more about wheels</a>. ;)</small></p>
+		
+	</footer>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="../ion/jquery.ion.min.js"></script>
+	
+	<script>
+		
+		$(document).ready(function() {
+			
+			var console = (window.console || { log : function() {} });
+			
+			$('.ion').ion({
+				
+				classSelected : 'ion-selected',
+				animIn        : { opacity: 'show' },
+				animOut       : { opacity: 'hide' },
+				easeIn        : 'swing',
+				easeOut       : 'swing',
+				speedIn       : 'fast',
+				speedOut      : 'fast',
+				onInit        : function() { console.log('onInit', this) },
+				onAfterInit   : function() { console.log('onAfterInit', this) },
+				onBeforeShow  : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
+				onShow        : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
+				onBeforeHide  : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
+				onHide        : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
+				
+			});
+			
+			//$('.ion').ion('destroy');
+			
+		});
+		
+	</script>
+	
+</body>
+</html>
