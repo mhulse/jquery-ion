@@ -34,6 +34,32 @@
 		
 		/*-----------------( ACCORDION SKIN )-----------------*/
 		
+		.ion,
+		.ion > li {
+			margin: 0;
+			padding: 0;
+		}
+		.ion > li {
+			position: relative;
+			overflow: hidden;
+			list-style: none;
+		}
+		
+		.ion-head, li, h2 { margin-bottom:15px; }
+		
+		.ion-head {
+			text-decoration:none;
+			font-size:20px;
+			display:block;
+			margin: 0;
+		}
+		
+		.ion-head-selected {
+			color: red;
+		}
+		
+		.ion-panel { padding: 1px; }
+		
 		@media all and (min-width : 480px) {
 			
 		}
@@ -57,13 +83,45 @@
 	
 	<hr>
 	
-	<section>
+	<main>
 		
-		<h1>FOO, BAR &amp; BAZ</h1>
+		<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : false }'>
+			
+			<h1>FOO, BAR &amp; BAZ</h1>
+			
+			<section>
+				
+				<h1 id="foo" class="ion-head">FOO</h1>
+				
+				<div class="ion-panel">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
+				</div>
+				
+			</section>
+			
+			<section>
+				
+				<h1 id="foo" class="ion-head ion-head-selected">BAZ</h1>
+				
+				<div class="ion-panel">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
+				</div>
+				
+			</section>
+			
+			<section>
+				
+				<h1 id="bar" class="ion-head">BAR</h1>
+				
+				<div class="ion-panel ion-panel-open">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
+				</div>
+				
+			</section>
+			
+		</section>
 		
-		<p>...</p>
-		
-	</section>
+	</main>
 	
 	<footer>
 		
@@ -72,7 +130,7 @@
 	</footer>
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="../ion/jquery.ion.min.js"></script>
+	<script src="../ion/jquery.ion.js"></script>
 	
 	<script>
 		
@@ -82,19 +140,24 @@
 			
 			$('.ion').ion({
 				
-				classSelected : 'ion-selected',
-				animIn        : { opacity: 'show' },
-				animOut       : { opacity: 'hide' },
-				easeIn        : 'swing',
-				easeOut       : 'swing',
-				speedIn       : 'fast',
-				speedOut      : 'fast',
-				onInit        : function() { console.log('onInit', this) },
-				onAfterInit   : function() { console.log('onAfterInit', this) },
-				onBeforeShow  : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
-				onShow        : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
-				onBeforeHide  : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
-				onHide        : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
+				alwaysOpen        : false,
+				allowMultiple     : false,
+				classHead         : 'ion-head',
+				classHeadSelected : 'ion-head-selected',
+				classPanel        : 'ion-panel',
+				classPanelOpen    : 'ion-panel-open',
+				animIn            : { opacity: 'show' },
+				animOut           : { opacity: 'hide' },
+				easeIn            : 'swing',
+				easeOut           : 'swing',
+				speedIn           : 'fast',
+				speedOut          : 'fast',
+				onInit            : function() { console.log('onInit', this) },
+				onAfterInit       : function() { console.log('onAfterInit', this) },
+				onBeforeShow      : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
+				onShow            : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
+				onBeforeHide      : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
+				onHide            : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
 				
 			});
 			

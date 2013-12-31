@@ -1,3 +1,8 @@
+// http://www.jacklmoore.com/demo/accordion.html
+// http://stackoverflow.com/questions/9948306/overriding-jquery-plugin-options-with-html5-data-attributes
+// https://medium.com/web-design-tutorials/29b39ac24b38
+// http://www.adipalaz.com/scripts/jquery/jquery.nestedAccordion.txt
+
 //----------------------------------
 
 // Notes to self:
@@ -51,19 +56,24 @@
 	
 	defaults = {
 		
-		classSelected : NS + '-selected',    // Selected tab CSS class.
-		animIn        : { opacity: 'show' }, // What animation object to use to show the panels.
-		animOut       : { opacity: 'hide' }, // IBID, but for hiding.
-		easeIn        : 'swing',             // Easing function in.
-		easeOut       : 'swing',             // Easing function out.
-		speedIn       : 'normal',            // Animation speed in.
-		speedOut      : 'normal',            // Animation speed out.
-		onInit        : $.noop,              // Callback on plugin initialization.
-		onAfterInit   : $.noop,              // Callback after plugin initialization.
-		onBeforeShow  : $.noop,              // Before reveal animation begins.
-		onShow        : $.noop,              // After reveal animation ends.
-		onBeforeHide  : $.noop,              // Before hide animation begins.
-		onHide        : $.noop               // After hide animation ends.
+		alwaysOpen        : false,
+		allowMultiple     : false,
+		classHead         : NS + '-head',          // Head class.
+		classHeadSelected : NS + '-head-selected', // Head "selected" class.
+		classPanel        : NS + '-panel',         // Panel class.
+		classPanelOpen    : NS + '-panel-open',    // Panel "open" class.
+		animIn            : { opacity: 'show' },   // What animation object to use to show the panels.
+		animOut           : { opacity: 'hide' },   // IBID, but for hiding.
+		easeIn            : 'swing',               // Easing function in.
+		easeOut           : 'swing',               // Easing function out.
+		speedIn           : 'normal',              // Animation speed in.
+		speedOut          : 'normal',              // Animation speed out.
+		onInit            : $.noop,                // Callback on plugin initialization.
+		onAfterInit       : $.noop,                // Callback after plugin initialization.
+		onBeforeShow      : $.noop,                // Before reveal animation begins.
+		onShow            : $.noop,                // After reveal animation ends.
+		onBeforeHide      : $.noop,                // Before hide animation begins.
+		onHide            : $.noop                 // After hide animation ends.
 		
 	}, // defaults
 	
@@ -116,7 +126,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings  = $.extend({}, defaults, options); // Merge defaults and options.
+					settings = $.extend(true, {}, defaults, options, $this.data('ionOptions')); // Merge defaults, options and data attribute options.
 					
 					//----------------------------------
 					// Namespaced instance data:
@@ -233,7 +243,11 @@
 		// Hoist variables:
 		//----------------------------------
 		
-		// ...
+		var $this = $(this),
+		    $heads,
+		    $heads_active,
+		    $panels,
+		    $panels_active;
 		
 		//----------------------------------
 		// Data?
@@ -267,7 +281,114 @@
 			
 			data.settings.onInit.call(data.target);
 			
-			// Stuff here.
+			//----------------------------------
+			// Cache heads and panels:
+			//----------------------------------
+			
+			$heads = $this.find('.' + data.settings.classHead);
+			$panels = $this.find('.' + data.settings.classPanel);
+			
+			//----------------------------------
+			// Cache active heads:
+			//----------------------------------
+			
+			$heads_active = $heads.filter('.' + data.settings.classHeadSelected);
+			
+			//----------------------------------
+			// Put classes on head/panels:
+			//----------------------------------
+			
+			$heads_active
+				.addClass(data.settings.classHeadSelected) // Add "selected" class to head.
+				.siblings('.' + data.settings.classPanel)  // Find the related panel ...
+				.addClass(data.settings.classPanelOpen);   // ... and add the "open" class.
+			
+			//----------------------------------
+			// Cache ative panels:
+			//----------------------------------
+			
+			$panels_active = $panels.filter('.' + data.settings.classPanelOpen);
+			
+			//----------------------------------
+			// If none, open first head/panel:
+			//----------------------------------
+			
+			if (data.settings.alwaysOpen && ( ! $heads_active.length) && ( ! $panels_active.length)) {
+				
+				$heads_active = $heads.first();   // First head.
+				$panels_active = $panels.first(); // First panel.
+				
+			}
+			
+			//----------------------------------
+			// Hide inactive panels:
+			//----------------------------------
+			
+			$panels
+				.not($panels_active) // Not the active panel.
+				.hide();             // Ensure non-active panels are hidden.
+			
+			//----------------------------------
+			// Put classes on panels/heads:
+			//----------------------------------
+			
+			$panels_active
+				.show()                                     // Ensure active panels are visible.
+				.addClass(data.settings.classPanelOpen)     // Add "open" class.
+				.siblings('.' + data.settings.classHead)    // Find the related head ...
+				.addClass(data.settings.classHeadSelected); // ... and add the "selected" class.
+			
+			/*
+			$active = $($links.filter('[href="' + location.hash + '"]')[0] || $links.filter('.' + data.settings.classSelected)[0] || $links[0]); // Activate by `location.hash`, manually assignment or first tab.
+			
+			// 3) SHOW ACTIVE, HIDE THE REST:
+			
+			$links.removeClass(data.settings.classSelected);
+			$active.addClass(data.settings.classSelected);
+			$links.not($active).each(function() {
+				
+				$($(this).attr('href')).hide(); // Determined by anchor IDs.
+				
+			});
+			
+			//----------------------------------
+			// Get and show "active" panel:
+			//----------------------------------
+			
+			$panel = $($active.attr('href'));
+			$panel.show();
+			*/
+			
+			// 3) CLICK:
+			
+			$heads.on('click.' + NS, function(e) {
+				
+				var $t = $(this);
+				
+				e.preventDefault();
+				
+				if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
+					
+					if ( ! data.settings.allowMultiple) {
+						
+						$panels.slideUp();
+						
+					}
+					
+					$heads.removeClass(data.settings.classHeadSelected);
+					$panels.removeClass(data.settings.classPanelOpen);
+					
+					$t
+						.addClass(data.settings.classHeadSelected)
+						.siblings('.' + data.settings.classPanel)
+						.not(':animated')
+						.slideToggle(function() {
+							$(this).addClass(data.settings.classPanelOpen);
+						});
+				
+				}
+				
+			});
 			
 			//----------------------------------
 			// Callback:
