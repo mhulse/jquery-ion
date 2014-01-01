@@ -69,8 +69,8 @@
 	
 	defaults = {
 		
-		alwaysOpen        : false,
-		allowMultiple     : false,
+		alwaysOpen        : false,                 // One panel must always be open.
+		allowMultiple     : false,                 // Allow multiple panels to be open at same time.
 		classHead         : NS + '-head',          // Head class.
 		classHeadSelected : NS + '-head-selected', // Head "selected" class.
 		classPanel        : NS + '-panel',         // Panel class.
