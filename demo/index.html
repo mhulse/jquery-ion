@@ -104,7 +104,7 @@
 		
 		<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : false }'>
 			
-			<h1>FOO, BAR, BAZ, EEK, MOOF &amp; GLEEP!</h1>
+			<h1><a class="ion-single" href="#foo">FOO</a>, <a class="ion-single" href="#bar">BAR</a>, <a class="ion-single" href="#baz">BAZ</a>, <a class="ion-single" href="#eek">EEK</a>, <a class="ion-single" href="#moof">MOOF</a> &amp; <a class="ion-single" href="#gleep">GLEEP</a>! (<a class="ion-toggle" href="#">toggle</a>)</h1>
 			
 			<section>
 				
@@ -122,7 +122,7 @@
 			
 			<section>
 				
-				<h1 id="foo" class="ion-head ion-head-selected">BAZ</h1>
+				<h1 id="baz" class="ion-head ion-head-selected">BAZ</h1>
 				
 				<div class="ion-panel">
 					
@@ -217,6 +217,8 @@
 				classHeadSelected : 'ion-head-selected',
 				classPanel        : 'ion-panel',
 				classPanelOpen    : 'ion-panel-open',
+				classSingle       : 'ion-single',
+				classToggle       : 'ion-toggle',
 				animIn            : { opacity: 'show' },
 				animOut           : { opacity: 'hide' },
 				easeIn            : 'swing',

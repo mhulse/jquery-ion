@@ -69,13 +69,15 @@
 	
 	defaults = {
 		
-		alwaysOpen        : false,                 // One panel must always be open.
-		allowMultiple     : false,                 // Allow multiple panels to be open at same time.
+		alwaysOpen        : false,                 // Must one panel always be open?
+		allowMultiple     : false,                 // Allow multiple panels to be open at same time?
 		classHead         : NS + '-head',          // Head class.
 		classHeadSelected : NS + '-head-selected', // Head "selected" class.
 		classPanel        : NS + '-panel',         // Panel class.
 		classPanelOpen    : NS + '-panel-open',    // Panel "open" class.
-		animIn            : { opacity: 'show' },   // What animation object to use to show the panels.
+		classSingle       : '',                    // Have "external" link(s) open a single panel based on its hash?
+		classToggle       : '',                    // Have "external" link(s) expand all panels based on hash?
+		animIn            : { opacity: 'show' },   // Animation object used to show the panels.
 		animOut           : { opacity: 'hide' },   // IBID, but for hiding.
 		easeIn            : 'swing',               // Easing function in.
 		easeOut           : 'swing',               // Easing function out.
@@ -139,7 +141,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings = $.extend(true, {}, defaults, options, $this.data('ionOptions')); // Merge defaults, options and data attribute options.
+					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Merge defaults, options and data attribute options.
 					
 					//----------------------------------
 					// Namespaced instance data:
@@ -301,118 +303,164 @@
 			$heads = $this.find('.' + data.settings.classHead);
 			$panels = $this.find('.' + data.settings.classPanel);
 			
-			//----------------------------------
-			// URI hash to select active?:
-			//----------------------------------
-			
-			$heads
-				.filter(location.hash)
-				.addClass(data.settings.classHeadSelected);
-			
-			//----------------------------------
-			// Cache active heads:
-			//----------------------------------
-			
-			$heads_active = $heads.filter('.' + data.settings.classHeadSelected);
-			
-			//----------------------------------
-			// Put classes on head/panels:
-			//----------------------------------
-			
-			$heads_active
-				.addClass(data.settings.classHeadSelected) // Add "selected" class to head.
-				.siblings('.' + data.settings.classPanel)  // Find the related panel ...
-				.addClass(data.settings.classPanelOpen);   // ... and add the "open" class.
-			
-			//----------------------------------
-			// Cache ative panels:
-			//----------------------------------
-			
-			$panels_active = $panels.filter('.' + data.settings.classPanelOpen);
-			
-			//----------------------------------
-			// If none, open first head/panel:
-			//----------------------------------
-			
-			if (data.settings.alwaysOpen && ( ! $heads_active.length) && ( ! $panels_active.length)) {
-				
-				$heads_active = $heads.first();   // First head.
-				$panels_active = $panels.first(); // First panel.
-				
-			}
-			
-			//----------------------------------
-			// Hide inactive panels:
-			//----------------------------------
-			
-			$panels
-				.not($panels_active) // Not the active panel.
-				.hide();             // Ensure non-active panels are hidden.
-			
-			//----------------------------------
-			// Put classes on panels/heads:
-			//----------------------------------
-			
-			$panels_active
-				.show()                                     // Ensure active panels are visible.
-				.addClass(data.settings.classPanelOpen)     // Add "open" class.
-				.siblings('.' + data.settings.classHead)    // Find the related head ...
-				.addClass(data.settings.classHeadSelected); // ... and add the "selected" class.
-			
-			//----------------------------------
-			// Assign event handler to heads:
-			//----------------------------------
-			
-			$heads.on('click.' + NS, function() {
+			if ($heads.length && $panels.length) { // Compare length as well?
 				
 				//----------------------------------
-				// Hoist variables:
+				// URI hash to select active?:
 				//----------------------------------
 				
-				var $t = $(this);
+				$heads
+					.filter(location.hash)
+					.addClass(data.settings.classHeadSelected);
 				
 				//----------------------------------
-				// Allow all panels to be closed?
+				// Cache active heads:
 				//----------------------------------
 				
-				if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
+				$heads_active = $heads.filter('.' + data.settings.classHeadSelected);
+				
+				//----------------------------------
+				// Put classes on head/panels:
+				//----------------------------------
+				
+				$heads_active
+					.addClass(data.settings.classHeadSelected) // Add "selected" class to head.
+					.siblings('.' + data.settings.classPanel)  // Find the related panel ...
+					.addClass(data.settings.classPanelOpen);   // ... and add the "open" class.
+				
+				//----------------------------------
+				// Cache ative panels:
+				//----------------------------------
+				
+				$panels_active = $panels.filter('.' + data.settings.classPanelOpen);
+				
+				//----------------------------------
+				// If none, open first head/panel:
+				//----------------------------------
+				
+				if (data.settings.alwaysOpen && ( ! $heads_active.length) && ( ! $panels_active.length)) {
 					
-					//----------------------------------
-					// Allow multiple panels open?
-					//----------------------------------
-					
-					if ( ! data.settings.allowMultiple) {
-						
-						//----------------------------------
-						// Remove selected/open classes:
-						//----------------------------------
-						
-						$heads
-							.not($t)                                      // Not the currently clicked element.
-							.removeClass(data.settings.classHeadSelected) // Remove "selected" class from head.
-							.siblings('.' + data.settings.classPanel)     // Find the related panel ...
-							.removeClass(data.settings.classPanelOpen)    // Remove the "open" class.
-							.slideUp();                                   // Close other panels.
-						
-					}
-					
-					//----------------------------------
-					// Toggle the active head/panel:
-					//----------------------------------
-					
-					$t
-						.toggleClass(data.settings.classHeadSelected) // Toggle the head's "selected" class.
-						.siblings('.' + data.settings.classPanel)     // Find the related panel ...
-						.stop(true)                                   // Stop animation and clear queue.
-						.slideToggle(function() {
-							
-							$(this).toggleClass(data.settings.classPanelOpen); // Toggle the panel's "open" class.
-							
-						});
+					$heads_active = $heads.first();   // First head.
+					$panels_active = $panels.first(); // First panel.
 					
 				}
 				
-			});
+				//----------------------------------
+				// Hide inactive panels:
+				//----------------------------------
+				
+				$panels
+					.not($panels_active) // Not the active panel.
+					.hide();             // Ensure non-active panels are hidden.
+				
+				//----------------------------------
+				// Put classes on panels/heads:
+				//----------------------------------
+				
+				$panels_active
+					.show()                                     // Ensure active panels are visible.
+					.addClass(data.settings.classPanelOpen)     // Add "open" class.
+					.siblings('.' + data.settings.classHead)    // Find the related head ...
+					.addClass(data.settings.classHeadSelected); // ... and add the "selected" class.
+				
+				//----------------------------------
+				// External single clicks?
+				//----------------------------------
+				
+				if (data.settings.classSingle.length) {
+					
+					$('.' + data.settings.classSingle).on('click.' + NS, function($e) {
+						
+						$e.preventDefault();
+						
+						$heads
+							.filter($(this).attr('href'))
+							.trigger('click.' + NS);
+						
+					});
+					
+				}
+				
+				//----------------------------------
+				// Expand all?
+				//----------------------------------
+				
+				if (data.settings.classToggle.length) {
+					
+					$('.' + data.settings.classToggle).on('click.' + NS, function($e) {
+						
+						$e.preventDefault();
+						
+						$heads.trigger('click.' + NS);
+						
+					});
+					
+				}
+				
+				//----------------------------------
+				// Assign event handler to heads:
+				//----------------------------------
+				
+				$heads.on('click.' + NS, function() {
+					
+					//----------------------------------
+					// Hoist variables:
+					//----------------------------------
+					
+					var $t = $(this);
+					
+					//----------------------------------
+					// Allow all panels to be closed?
+					//----------------------------------
+					
+					if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
+						
+						//----------------------------------
+						// Allow multiple panels open?
+						//----------------------------------
+						
+						if ( ! data.settings.allowMultiple) {
+							
+							//----------------------------------
+							// Remove selected/open classes:
+							//----------------------------------
+							
+							$heads
+								.not($t)                                      // Not the currently clicked element.
+								.removeClass(data.settings.classHeadSelected) // Remove "selected" class from head.
+								.siblings('.' + data.settings.classPanel)     // Find the related panel ...
+								.removeClass(data.settings.classPanelOpen)    // Remove the "open" class.
+								.slideUp();                                   // Close other panels.
+							
+						}
+						
+						//----------------------------------
+						// Toggle the active head/panel:
+						//----------------------------------
+						
+						$t
+							.toggleClass(data.settings.classHeadSelected) // Toggle the head's "selected" class.
+							.siblings('.' + data.settings.classPanel)     // Find the related panel ...
+							.stop(true)                                   // Stop animation and clear queue.
+							.slideToggle(function() {
+								
+								$(this).toggleClass(data.settings.classPanelOpen); // Toggle the panel's "open" class.
+								
+							});
+						
+					}
+					
+				});
+				
+			} else {
+				
+				//----------------------------------
+				// Ouch!
+				//----------------------------------
+				
+				console.warn('jQuery.' + NS, 'thinks your\'re missing head(s) and/or panel(s) for', this);
+				
+			}
 			
 			//----------------------------------
 			// Callback:
