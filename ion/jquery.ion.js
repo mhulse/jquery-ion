@@ -5,10 +5,10 @@
  * @author Micky Hulse
  * @link http://mky.io
  * @docs https://github.com/mhulse/jquery-ion
- * @copyright Copyright (c) 2013 Micky Hulse.
+ * @copyright Copyright (c) 2014 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 0.1.0
- * @date 2013/12/31
+ * @date 2014/01/02
  */
 
 // http://www.jacklmoore.com/demo/accordion.html
