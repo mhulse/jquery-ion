@@ -314,11 +314,13 @@
 				// Put classes on head/panels:
 				//----------------------------------
 				
+				/*
 				$heads_active
 					.data(NS + '.toggled', true)               // So we can handle interactions later.
 					.addClass(data.settings.classHeadSelected) // Add "selected" class to head.
 					.siblings('.' + data.settings.classPanel)  // Find the related panel ...
 					.addClass(data.settings.classPanelOpen);   // ... and add the "open" class.
+				*/
 				
 				//----------------------------------
 				// Cache ative panels:
@@ -345,16 +347,9 @@
 					.not($panels_active) // Not the active panel.
 					.hide();             // Ensure non-active panels are hidden.
 				
-				//----------------------------------
-				// Put classes on panels/heads:
-				//----------------------------------
-				
-				$panels_active
-					.show()                                     // Ensure active panels are visible.
-					.addClass(data.settings.classPanelOpen)     // Add "open" class.
-					.siblings('.' + data.settings.classHead)    // Find the related head ...
-					.data(NS + '.toggled', true)                // So we can handle interactions later.
-					.addClass(data.settings.classHeadSelected); // ... and add the "selected" class.
+				_open.call($heads_active.add(
+					$panels_active.siblings('.' + data.settings.classHead)
+				),data);
 				
 				//----------------------------------
 				// External single clicks?
@@ -502,19 +497,12 @@
 	
 	_open = function(data) {
 		
-		console.log('OPEN', this, data);
-		
-		//----------------------------------
-		// Set local data boolean:
-		//----------------------------------
-		
-		this.data(NS + '.toggled', true);
-		
 		//----------------------------------
 		// Toggle the active head/panel:
 		//----------------------------------
 		
 		this
+			.data(NS + '.toggled', true)
 			.addClass(data.settings.classHeadSelected) // Toggle the head's "selected" class.
 			.siblings('.' + data.settings.classPanel)  // Find the related panel ...
 			.stop(true)                                // Stop animation and clear queue.
@@ -542,13 +530,9 @@
 	
 	_close = function(data) {
 		
-		console.log('CLOSE', this, data);
-		
 		//----------------------------------
 		// Remove data boolean:
 		//----------------------------------
-		
-		this.removeData(NS + '.toggled');
 		
 		this
 			.removeData(NS + '.toggled')                  // Remove local data.
