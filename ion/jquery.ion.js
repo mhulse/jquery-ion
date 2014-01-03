@@ -7,8 +7,8 @@
  * @docs https://github.com/mhulse/jquery-ion
  * @copyright Copyright (c) 2014 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
- * @version 0.1.0
- * @date 2014/01/02
+ * @version 1.0.0
+ * @date 2014/01/03
  */
 
 // http://www.jacklmoore.com/demo/accordion.html
@@ -76,7 +76,6 @@
 		classPanel        : NS + '-panel',                       // Panel class.
 		classPanelOpen    : NS + '-panel-open',                  // Panel "open" class.
 		classSingle       : '',                                  // Have "external" link(s) open a single panel based on its hash?
-		//classToggle       : '',                                  // Have "external" link(s) expand all panels based on hash?
 		animIn            : { opacity: 'show', height: 'show' }, // Animation object used to show the panels.
 		animOut           : { opacity: 'show', height: 'show' }, // IBID, but for hiding.
 		easeIn            : 'swing',                             // Easing function in.
@@ -250,6 +249,7 @@
 	 * @private
 	 * @type { function }
 	 * @this { object.jquery }
+	 * @param { object } data Parent data object literal.
 	 */
 	
 	_main = function(data) {
@@ -314,26 +314,14 @@
 				//----------------------------------
 				
 				$heads
-					.filter(location.hash)
-					.addClass(data.settings.classHeadSelected);
+					.filter(location.hash)                      // If there's a hash ID in the URI that matches a head ID ...
+					.addClass(data.settings.classHeadSelected); // ... then apply the selected class to head.
 				
 				//----------------------------------
 				// Cache active heads:
 				//----------------------------------
 				
 				$heads_active = $heads.filter('.' + data.settings.classHeadSelected);
-				
-				//----------------------------------
-				// Put classes on head/panels:
-				//----------------------------------
-				
-				/*
-				$heads_active
-					.data(NS + '.toggled', true)               // So we can handle interactions later.
-					.addClass(data.settings.classHeadSelected) // Add "selected" class to head.
-					.siblings('.' + data.settings.classPanel)  // Find the related panel ...
-					.addClass(data.settings.classPanelOpen);   // ... and add the "open" class.
-				*/
 				
 				//----------------------------------
 				// Cache ative panels:
@@ -360,8 +348,12 @@
 					.not($panels_active) // Not the active panel.
 					.hide();             // Ensure non-active panels are hidden.
 				
+				//----------------------------------
+				// Open all active heads/panels:
+				//----------------------------------
+				
 				_open.call($heads_active.add(
-					$panels_active.siblings('.' + data.settings.classHead)
+					$panels_active.prev('.' + data.settings.classHead) // @TODO: Should I worry about dupes?
 				),data);
 				
 				//----------------------------------
@@ -370,41 +362,35 @@
 				
 				if (data.settings.classSingle.length) {
 					
+					//----------------------------------
+					// Click handler for class:
+					//----------------------------------
+					
 					$('.' + data.settings.classSingle).on('click.' + NS, function($e) {
 						
+						//----------------------------------
+						// Prevent anchor's default action:
+						//----------------------------------
+						
 						$e.preventDefault();
+						
+						//----------------------------------
+						// Trigger head click:
+						//----------------------------------
 						
 						$heads
-							.filter($(this).attr('href'))
-							.trigger('click.' + NS);
+							.filter($(this).attr('href')) // Use anchor value.
+							.trigger('click.' + NS);      // Boom goes the dynamite!
 						
 					});
 					
 				}
-				
-				//----------------------------------
-				// Expand all?
-				//----------------------------------
-				
-				/*
-				if (data.settings.classToggle.length) {
-					
-					$('.' + data.settings.classToggle).on('click.' + NS, function($e) {
-						
-						$e.preventDefault();
-						
-						_open.call($heads, data);
-						
-					});
-					
-				}
-				*/
 				
 				//----------------------------------
 				// Assign event handler to heads:
 				//----------------------------------
 				
-				$heads.on('click.' + NS, function() {
+				$heads.on('click.' + NS, function($e) {
 					
 					//----------------------------------
 					// Hoist variables:
@@ -413,10 +399,10 @@
 					var $t = $(this);
 					
 					//----------------------------------
-					// Allow all panels to be closed?
+					// Prevent default action (if any):
 					//----------------------------------
 					
-					//if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {\
+					$e.preventDefault();
 					
 					//----------------------------------
 					// Toggle between open and closed:
@@ -424,70 +410,48 @@
 					
 					if ( ! $t.data(NS + '.toggled')) { // OPEN!
 						
+						//----------------------------------
+						// Multiple active heads/panels?
+						//----------------------------------
+						
 						if ( ! data.settings.allowMultiple) {
 							
-							// Close other panels:
+							//----------------------------------
+							// Nope. Close heads/panels:
+							//----------------------------------
+							
 							_close.call($heads.not($t), data);
 							
 						}
+						
+						//----------------------------------
+						// Open Sesame!
+						//----------------------------------
 						
 						_open.call($t, data);
 						
 					} else { // CLOSE!
 						
+						//----------------------------------
+						// Close head/panel, based on:
+						//----------------------------------
+						
+						// When click is triggered ...
+						// IF setting "alwaysOpen" is false, THEN close.
+						// OR
+						// IF setting "alwaysOpen" is true, AND, there are more than one panels open, close.
+						// Otherwise, do nothing.
 						if (( ! data.settings.alwaysOpen) || (data.settings.alwaysOpen && ($panels.filter('.' + data.settings.classPanelOpen).length > 1))) {
+							
+							//----------------------------------
+							// Close up shop:
+							//----------------------------------
 							
 							_close.call($t, data);
 							
 						}
 						
 					}
-					
-					//}
-					
-					/*
-					//----------------------------------
-					// Allow all panels to be closed?
-					//----------------------------------
-					
-					if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
-						
-						//----------------------------------
-						// Allow multiple panels open?
-						//----------------------------------
-						
-						if ( ! data.settings.allowMultiple) {
-							
-							//----------------------------------
-							// Remove selected/open classes:
-							//----------------------------------
-							
-							$heads
-								.not($t)                                      // Not the currently clicked element.
-								.removeData(NS + '.toggled')                  // Remove local data.
-								.removeClass(data.settings.classHeadSelected) // Remove "selected" class from head.
-								.siblings('.' + data.settings.classPanel)     // Find the related panel ...
-								.removeClass(data.settings.classPanelOpen)    // Remove the "open" class.
-								.slideUp();                                   // Close other panels.
-							
-						}
-						
-						//----------------------------------
-						// Toggle the active head/panel:
-						//----------------------------------
-						
-						$t
-							.toggleClass(data.settings.classHeadSelected) // Toggle the head's "selected" class.
-							.siblings('.' + data.settings.classPanel)     // Find the related panel ...
-							.stop(true)                                   // Stop animation and clear queue.
-							.slideToggle(function() {
-								
-								$(this).toggleClass(data.settings.classPanelOpen); // Toggle the panel's "open" class.
-								
-							});
-						
-					}
-					*/
 					
 				});
 				
@@ -513,51 +477,90 @@
 	
 	//----------------------------------
 	
+	/**
+	 * Open accordion method.
+	 *
+	 * @private
+	 * @type { function }
+	 * @this { object.jquery } A jQuery object that contains one or more head elements.
+	 * @param { object } data Parent data object literal.
+	 */
+	
 	_open = function(data) {
+		
+		//----------------------------------
+		// Hoist variables:
+		//----------------------------------
+		
+		var $this = $(this);
+		
+		//----------------------------------
+		// Callback:
+		//----------------------------------
+		
+		data.settings.onBeforeShow.call(data.target, $this);
 		
 		//----------------------------------
 		// Toggle the active head/panel:
 		//----------------------------------
 		
-		this
-			.data(NS + '.toggled', true)
+		$this
+			.data(NS + '.toggled', true)               // Set locally namespaced "toggled" data.
 			.addClass(data.settings.classHeadSelected) // Toggle the head's "selected" class.
-			.siblings('.' + data.settings.classPanel)  // Find the related panel ...
-			.stop(true)                                // Stop animation and clear queue.
+			.next('.' + data.settings.classPanel)  // Find the related panel ...
+			.addClass(data.settings.classPanelOpen)    // Add the "open" class to panel.
+			.stop(true, true)                          // Stop animation, clear queue and jumpt to end.
 			.animate(
 				data.settings.animIn,
 				data.settings.speedIn,
 				data.settings.easeIn,
 				function() {
 					
-					var $t = $(this);
-					
 					//----------------------------------
 					// Callback:
 					//----------------------------------
 					
-					data.settings.onShow.call(this, $t);
-					
-					$t.addClass(data.settings.classPanelOpen); // Add the "open" class to panel.
+					data.settings.onShow.call(data.target, $this, $(this)); // Show this MOFO!
 					
 				});
 		
-	},
+	}, // _open
 	
 	//----------------------------------
 	
+	/**
+	 * Close accordion method.
+	 *
+	 * @private
+	 * @type { function }
+	 * @this { object.jquery } A jQuery object that contains one or more head elements.
+	 * @param { object } data Parent data object literal.
+	 */
+	
 	_close = function(data) {
+		
+		//----------------------------------
+		// Hoist variables:
+		//----------------------------------
+		
+		var $this = $(this);
+		
+		//----------------------------------
+		// Callback:
+		//----------------------------------
+		
+		data.settings.onBeforeHide.call(data.target, $this);
 		
 		//----------------------------------
 		// Remove data boolean:
 		//----------------------------------
 		
-		this
-			.removeData(NS + '.toggled')                  // Remove local data.
+		$this
+			.removeData(NS + '.toggled')                  // Remove locally namespaced "toggled" data.
 			.removeClass(data.settings.classHeadSelected) // Remove "selected" class from head.
-			.siblings('.' + data.settings.classPanel)     // Find the related panel ...
+			.next('.' + data.settings.classPanel)     // Find the related panel ...
 			.removeClass(data.settings.classPanelOpen)    // Remove the "open" class.
-			.stop(true)                                   // Stop animation and clear queue.
+			.stop(true, true)                             // Stop animation, clear queue and jumpt to end.
 			.animate(
 				data.settings.animOut,
 				data.settings.speedOut,
@@ -568,11 +571,11 @@
 					// Callback:
 					//----------------------------------
 					
-					data.settings.onHide.call(this, $(this));
+					data.settings.onHide.call(data.target, $this, $(this)); // Hide this MOFO!
 					
 				});
 		
-	};
+	}; // _close
 	
 	//--------------------------------------------------------------------------
 	//

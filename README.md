@@ -25,8 +25,38 @@ Setting up Ion is simple.
 Here's the basic HTML:
 
 ```html
-...
+<section class="ion">
+	
+	<h1>...</h1>
+	
+	<section>
+		
+		<h1 class="ion-head">FOO</h1>
+		
+		<div class="ion-panel">...</div>
+		
+	</section>
+	
+	<section>
+		
+		<h1 class="ion-head">BAR</h1>
+		
+		<div class="ion-panel">...</div>
+		
+	</section>
+	
+	<section>
+		
+		<h1 class="ion-head">BAZ</h1>
+		
+		<div class="ion-panel">...</div>
+		
+	</section>
+	
+</section>
 ```
+
+**Important:** The "panel" element must immidiately follow the "head" element.
 
 ### Styling:
 
@@ -46,7 +76,7 @@ Put [jQuery](http://jquery.com/) on your page:
 <script src="jquery.ion.min.js"></script>
 ```
 
-Next, ion can be instantiated like so:
+Next, Ion can be instantiated like so:
 
 ```html
 <script>
@@ -71,19 +101,26 @@ Here's an example with all the options:
 		
 		$('.ion').ion({
 			
-			classSelected : 'ion-selected',
-			animIn        : { opacity: 'show' },
-			animOut       : { opacity: 'hide' },
-			easeIn        : 'swing',
-			easeOut       : 'swing',
-			speedIn       : 'fast',
-			speedOut      : 'fast',
-			onInit        : function() { console.log('onInit', this) },
-			onAfterInit   : function() { console.log('onAfterInit', this) },
-			onBeforeShow  : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
-			onShow        : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
-			onBeforeHide  : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
-			onHide        : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
+			alwaysOpen        : false,
+			allowMultiple     : false,
+			classHead         : 'ion-head',
+			classHeadSelected : 'ion-head-selected',
+			classPanel        : 'ion-panel',
+			classPanelOpen    : 'ion-panel-open',
+			classSingle       : 'ion-single',
+			classHidden       : 'ion-panel-off',
+			animIn            : { opacity: 'show', height: 'show' },
+			animOut           : { opacity: 'hide', height: 'hide' },
+			easeIn            : 'swing',
+			easeOut           : 'swing',
+			speedIn           : 'fast',
+			speedOut          : 'fast',
+			onInit            : function() { console.log('onInit', this) },
+			onAfterInit       : function() { console.log('onAfterInit', this) },
+			onBeforeShow      : function($head) { console.log('onBeforeShow', this, $head) },
+			onShow            : function($head, $panel) { console.log('onShow', this, $head, $panel) },
+			onBeforeHide      : function($head) { console.log('onBeforeHide', this, $head) },
+			onHide            : function($head, $panel) { console.log('onHide', this, $head, $panel) }
 			
 		});
 		
@@ -98,9 +135,15 @@ Here's an example with all the options:
 
 Option | Description | Default
 :-- | :-- | :--
-`classSelected` | Selected tab CSS class. | `ion-selected`
-`animIn` |  What animation object to use to show the panels. | `{ opacity: 'show' }`
-`animOut` | IBID, but for hiding. | `{ opacity: 'hide' }`
+`alwaysOpen` | Must one panel always be open? | `false`
+`allowMultiple` | Allow multiple panels to be open at same time? | `false`
+`classHead` | Head class. | `ion-head`
+`classHeadSelected` | Head "selected" class. | `ion-selected`
+`classPanel` | Panel class. | `ion-panel`
+`classPanelOpen` | Panel "open" class. | `ion-panel-open`
+`classSingle` | Have "external" link(s) open a single panel based on its hash? | `''`
+`animIn` |  Animation object used to show the panels. | `{ opacity: 'show', height: 'show' }`
+`animOut` | IBID, but for hiding. | `{ opacity: 'show', height: 'show' }`
 `easeIn` | Easing function in. | `'swing'`
 `easeOut` | Easing function out. | `'swing'`
 `speedIn` | Animation speed in. | `'normal'`
@@ -111,6 +154,20 @@ Option | Description | Default
 `onShow` | After reveal animation ends. | `$.noop`
 `onBeforeHide` | Before hide animation begins. | `$.noop`
 `onHide` | After hide animation ends. | `$.noop`
+
+### Advanced:
+
+All options can be overidden via an [HTML5 data attribute](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) named `data-ion-options`; the value of this attribute **must** be valid [JSON](http://json.org/) syntax.
+
+For example:
+
+```html
+<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : true }'>
+	...
+</section>
+```
+
+**Note** the nesting order of the single (`'`) and double (`"`) quotes.
 
 ## Demo
 
