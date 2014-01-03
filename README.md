@@ -18,7 +18,7 @@ There are several ways to install this code:
 
 ## Usage
 
-Setting up Ion is simple.
+Setting up Ion is simple ...
 
 ### Markup:
 
@@ -56,7 +56,7 @@ Here's the basic HTML:
 </section>
 ```
 
-**Important:** The "panel" element must immidiately follow the "head" element.
+Really, the markup/structure is up to you ... As long as the "panel" element immidiately follows the "head" element, you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
 
 ### Styling:
 
@@ -174,6 +174,18 @@ For example:
 [![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-ion/&chs=240x240)](http://mhulse.github.com/jquery-ion/demo/)
 
 **Source:** [jquery.ion.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.js) | [jquery.ion.min.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.min.js)
+
+## Contributing
+
+Please read the [CONTRIBUTING.md](https://github.com/mhulse/jquery-ion/blob/gh-pages/CONTRIBUTING.md).
+
+## Feedback
+
+[Bugs? Constructive feedback? Questions?](https://github.com/mhulse/jquery-ion/issues/new?title=Your%20code%20sucks!&body=Here%27s%20why%3A%20)
+
+## [Release history](https://github.com/mhulse/jquery-ion/releases)
+
+* 2014-01-03   [v1.0.0](https://github.com/mhulse/jquery-ion/releases/tag/v1.0.0)   Hello world!
 
 ---
 
