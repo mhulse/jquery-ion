@@ -69,26 +69,26 @@
 	
 	defaults = {
 		
-		alwaysOpen        : false,                 // Must one panel always be open?
-		allowMultiple     : false,                 // Allow multiple panels to be open at same time?
-		classHead         : NS + '-head',          // Head class.
-		classHeadSelected : NS + '-head-selected', // Head "selected" class.
-		classPanel        : NS + '-panel',         // Panel class.
-		classPanelOpen    : NS + '-panel-open',    // Panel "open" class.
-		classSingle       : '',                    // Have "external" link(s) open a single panel based on its hash?
-		classToggle       : '',                    // Have "external" link(s) expand all panels based on hash?
-		animIn            : { opacity: 'show' },   // Animation object used to show the panels.
-		animOut           : { opacity: 'hide' },   // IBID, but for hiding.
-		easeIn            : 'swing',               // Easing function in.
-		easeOut           : 'swing',               // Easing function out.
-		speedIn           : 'normal',              // Animation speed in.
-		speedOut          : 'normal',              // Animation speed out.
-		onInit            : $.noop,                // Callback on plugin initialization.
-		onAfterInit       : $.noop,                // Callback after plugin initialization.
-		onBeforeShow      : $.noop,                // Before reveal animation begins.
-		onShow            : $.noop,                // After reveal animation ends.
-		onBeforeHide      : $.noop,                // Before hide animation begins.
-		onHide            : $.noop                 // After hide animation ends.
+		alwaysOpen        : false,                               // Must one panel always be open?
+		allowMultiple     : false,                               // Allow multiple panels to be open at same time?
+		classHead         : NS + '-head',                        // Head class.
+		classHeadSelected : NS + '-head-selected',               // Head "selected" class.
+		classPanel        : NS + '-panel',                       // Panel class.
+		classPanelOpen    : NS + '-panel-open',                  // Panel "open" class.
+		classSingle       : '',                                  // Have "external" link(s) open a single panel based on its hash?
+		//classToggle       : '',                                  // Have "external" link(s) expand all panels based on hash?
+		animIn            : { opacity: 'show', height: 'show' }, // Animation object used to show the panels.
+		animOut           : { opacity: 'show', height: 'show' }, // IBID, but for hiding.
+		easeIn            : 'swing',                             // Easing function in.
+		easeOut           : 'swing',                             // Easing function out.
+		speedIn           : 'normal',                            // Animation speed in.
+		speedOut          : 'normal',                            // Animation speed out.
+		onInit            : $.noop,                              // Callback on plugin initialization.
+		onAfterInit       : $.noop,                              // Callback after plugin initialization.
+		onBeforeShow      : $.noop,                              // Before reveal animation begins.
+		onShow            : $.noop,                              // After reveal animation ends.
+		onBeforeHide      : $.noop,                              // Before hide animation begins.
+		onHide            : $.noop                               // After hide animation ends.
 		
 	}, // defaults
 	
@@ -303,6 +303,10 @@
 			$heads = $this.find('.' + data.settings.classHead);
 			$panels = $this.find('.' + data.settings.classPanel);
 			
+			//----------------------------------
+			// Cache heads and panels:
+			//----------------------------------
+			
 			if ($heads.length && $panels.length) { // Compare length as well?
 				
 				//----------------------------------
@@ -324,6 +328,7 @@
 				//----------------------------------
 				
 				$heads_active
+					.data(NS + '.toggled', true)               // So we can handle interactions later.
 					.addClass(data.settings.classHeadSelected) // Add "selected" class to head.
 					.siblings('.' + data.settings.classPanel)  // Find the related panel ...
 					.addClass(data.settings.classPanelOpen);   // ... and add the "open" class.
@@ -361,6 +366,7 @@
 					.show()                                     // Ensure active panels are visible.
 					.addClass(data.settings.classPanelOpen)     // Add "open" class.
 					.siblings('.' + data.settings.classHead)    // Find the related head ...
+					.data(NS + '.toggled', true)                // So we can handle interactions later.
 					.addClass(data.settings.classHeadSelected); // ... and add the "selected" class.
 				
 				//----------------------------------
@@ -385,17 +391,19 @@
 				// Expand all?
 				//----------------------------------
 				
+				/*
 				if (data.settings.classToggle.length) {
 					
 					$('.' + data.settings.classToggle).on('click.' + NS, function($e) {
 						
 						$e.preventDefault();
 						
-						$heads.trigger('click.' + NS);
+						_open.call($heads, data);
 						
 					});
 					
 				}
+				*/
 				
 				//----------------------------------
 				// Assign event handler to heads:
@@ -416,6 +424,35 @@
 					if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
 						
 						//----------------------------------
+						// Toggle between open and closed:
+						//----------------------------------
+						
+						if ( ! $t.data(NS + '.toggled')) { // OPEN!
+							
+							if ( ! data.settings.allowMultiple) {
+								
+								_close.call($heads.not($t), data);
+								
+							}
+							
+							_open.call($t, data);
+							
+						} else { // CLOSE!
+							
+							_close.call($t, data);
+							
+						}
+						
+					}
+					
+					/*
+					//----------------------------------
+					// Allow all panels to be closed?
+					//----------------------------------
+					
+					if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
+						
+						//----------------------------------
 						// Allow multiple panels open?
 						//----------------------------------
 						
@@ -427,6 +464,7 @@
 							
 							$heads
 								.not($t)                                      // Not the currently clicked element.
+								.removeData(NS + '.toggled')                  // Remove local data.
 								.removeClass(data.settings.classHeadSelected) // Remove "selected" class from head.
 								.siblings('.' + data.settings.classPanel)     // Find the related panel ...
 								.removeClass(data.settings.classPanelOpen)    // Remove the "open" class.
@@ -449,6 +487,7 @@
 							});
 						
 					}
+					*/
 					
 				});
 				
@@ -470,7 +509,81 @@
 			
 		}
 		
-	}; // _main
+	}, // _main
+	
+	//----------------------------------
+	
+	_open = function(data) {
+		
+		console.log('OPEN', this, data);
+		
+		//----------------------------------
+		// Set local data boolean:
+		//----------------------------------
+		
+		this.data(NS + '.toggled', true);
+		
+		//----------------------------------
+		// Toggle the active head/panel:
+		//----------------------------------
+		
+		this
+			.addClass(data.settings.classHeadSelected) // Toggle the head's "selected" class.
+			.siblings('.' + data.settings.classPanel)  // Find the related panel ...
+			.stop(true)                                // Stop animation and clear queue.
+			.animate(
+				data.settings.animIn,
+				data.settings.speedIn,
+				data.settings.easeIn,
+				function() {
+					
+					var $t = $(this);
+					
+					//----------------------------------
+					// Callback:
+					//----------------------------------
+					
+					data.settings.onShow.call(this, $t);
+					
+					$t.addClass(data.settings.classPanelOpen); // Add the "open" class to panel.
+					
+				});
+		
+	},
+	
+	//----------------------------------
+	
+	_close = function(data) {
+		
+		console.log('CLOSE', this, data);
+		
+		//----------------------------------
+		// Remove data boolean:
+		//----------------------------------
+		
+		this.removeData(NS + '.toggled');
+		
+		this
+			.removeData(NS + '.toggled')                  // Remove local data.
+			.removeClass(data.settings.classHeadSelected) // Remove "selected" class from head.
+			.siblings('.' + data.settings.classPanel)     // Find the related panel ...
+			.removeClass(data.settings.classPanelOpen)    // Remove the "open" class.
+			.stop(true)                                   // Stop animation and clear queue.
+			.animate(
+				data.settings.animOut,
+				data.settings.speedOut,
+				data.settings.easeOut,
+				function() {
+					
+					//----------------------------------
+					// Callback:
+					//----------------------------------
+					
+					data.settings.onHide.call(this, $(this));
+					
+				});
+		
+	};
 	
 	//--------------------------------------------------------------------------
 	//

@@ -102,9 +102,9 @@
 	
 	<main>
 		
-		<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : false }'>
+		<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : true }'>
 			
-			<h1><a class="ion-single" href="#foo">FOO</a>, <a class="ion-single" href="#bar">BAR</a>, <a class="ion-single" href="#baz">BAZ</a>, <a class="ion-single" href="#eek">EEK</a>, <a class="ion-single" href="#moof">MOOF</a> &amp; <a class="ion-single" href="#gleep">GLEEP</a>! (<a class="ion-toggle" href="#">toggle</a>)</h1>
+			<h1><a class="ion-single" href="#foo">FOO</a>, <a class="ion-single" href="#bar">BAR</a>, <a class="ion-single" href="#baz">BAZ</a>, <a class="ion-single" href="#eek">EEK</a>, <a class="ion-single" href="#moof">MOOF</a> &amp; <a class="ion-single" href="#gleep">GLEEP</a>!</h1>
 			
 			<section>
 				
@@ -219,8 +219,8 @@
 				classPanelOpen    : 'ion-panel-open',
 				classSingle       : 'ion-single',
 				classToggle       : 'ion-toggle',
-				animIn            : { opacity: 'show' },
-				animOut           : { opacity: 'hide' },
+				animIn            : { opacity: 'show', height: 'show' },
+				animOut           : { opacity: 'hide', height: 'hide' },
 				easeIn            : 'swing',
 				easeOut           : 'swing',
 				speedIn           : 'fast',
@@ -228,9 +228,9 @@
 				onInit            : function() { console.log('onInit', this) },
 				onAfterInit       : function() { console.log('onAfterInit', this) },
 				onBeforeShow      : function($active, $inactive, $panel) { console.log('onBeforeShow', this, $active, $inactive, $panel) },
-				onShow            : function($active, $inactive, $panel) { console.log('onShow', this, $active, $inactive, $panel) },
+				onShow            : function($panel) { console.log('onShow', this, $panel) },
 				onBeforeHide      : function($active, $inactive, $panel) { console.log('onBeforeHide', this, $active, $inactive, $panel) },
-				onHide            : function($active, $inactive, $panel) { console.log('onHide', this, $active, $inactive, $panel) }
+				onHide            : function($panel) { console.log('onHide', this, $panel) }
 				
 			});
 			
