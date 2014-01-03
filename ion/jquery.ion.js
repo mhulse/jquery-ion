@@ -416,29 +416,34 @@
 					// Allow all panels to be closed?
 					//----------------------------------
 					
-					if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {
+					//if ( ! (data.settings.alwaysOpen && $t.hasClass(data.settings.classHeadSelected))) {\
+					
+					//----------------------------------
+					// Toggle between open and closed:
+					//----------------------------------
+					
+					if ( ! $t.data(NS + '.toggled')) { // OPEN!
 						
-						//----------------------------------
-						// Toggle between open and closed:
-						//----------------------------------
+						if ( ! data.settings.allowMultiple) {
+							
+							// Close other panels:
+							_close.call($heads.not($t), data);
+							
+						}
 						
-						if ( ! $t.data(NS + '.toggled')) { // OPEN!
-							
-							if ( ! data.settings.allowMultiple) {
-								
-								_close.call($heads.not($t), data);
-								
-							}
-							
-							_open.call($t, data);
-							
-						} else { // CLOSE!
+						_open.call($t, data);
+						
+					} else { // CLOSE!
+						
+						if (( ! data.settings.alwaysOpen) || (data.settings.alwaysOpen && ($panels.filter('.' + data.settings.classPanelOpen).length > 1))) {
 							
 							_close.call($t, data);
 							
 						}
 						
 					}
+					
+					//}
 					
 					/*
 					//----------------------------------
