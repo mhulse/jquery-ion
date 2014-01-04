@@ -22,7 +22,7 @@ Setting up Ion is simple ...
 
 ### Markup:
 
-Here's the basic HTML:
+Really, the markup is up to you ... Here's one way of doing it:
 
 ```html
 <section class="ion">
@@ -56,7 +56,14 @@ Here's the basic HTML:
 </section>
 ```
 
-Really, the markup/structure is up to you ... As long as the "panel" element immidiately follows the "head" element, you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
+There are only two requirments:
+
+1. The "panel" element immidiately follows its related "head" element.
+1. The plugin has been initialized on a parent element.
+
+... follow those rules and you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
+
+Next, apply the above class to any `<a>` tag:
 
 ### Styling:
 
@@ -157,17 +164,43 @@ Option | Description | Default
 
 ### Advanced:
 
-All options can be overidden via an [HTML5 data attribute](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) named `data-ion-options`; the value of this attribute **must** be valid [JSON](http://json.org/) syntax.
+1. All options can be overidden via an [HTML5 data attribute](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) named `data-ion-options`; the value of this attribute **must** be valid [JSON](http://json.org/) syntax.
 
-For example:
+ For example:
 
-```html
-<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : true }'>
-	...
-</section>
-```
+ ```html
+ <section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : true }'>
+ 	...
+ </section>
+ ```
 
-**Note** the nesting order of the single (`'`) and double (`"`) quotes.
+ **Note** the nesting order of the single (`'`) and double (`"`) quotes.
+
+2. The accordion can be triggered via external clicks (e.g., page navigation).
+
+ To enable this featue, set a class name for the `classSingle` option:
+
+ ```js
+ classSingle : 'ion-single',
+ ```
+
+ Next, add unique IDs to the heads:
+
+ ```html
+ <h1 id="foo" class="ion-head">FOO</h1>
+ ```
+
+ Last, add the `classSingle` class to any link, with an `href` that targets the ID set on the head above:
+
+ ```html
+ <a class="ion-single" href="#foo">FOO</a>
+ ```
+
+3. Accordion panels can be opened via URI hash, like so:
+
+ [http://mhulse.github.io/jquery-ion/demo/#moof](http://mhulse.github.io/jquery-ion/demo/#moof)
+
+ This feature is turned on by default.
 
 ## Demo
 
