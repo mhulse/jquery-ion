@@ -8,6 +8,8 @@
 
 ## Demo
 
+Click or scan:
+
 [![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-ion/&chs=240x240)](http://mhulse.github.com/jquery-ion/demo/)
 
 **Source:** [jquery.ion.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.js) | [jquery.ion.min.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.min.js)
@@ -71,7 +73,7 @@ There are only two requirments:
 
 ### Styling:
 
-These accordion can be styled as you see fit. Check out the [demo page](http://mhulse.github.com/jquery-ion/demo/) for a complete working example.
+The accordion can be styled as you see fit; check out the [demo page](http://mhulse.github.com/jquery-ion/demo/) for a complete working example.
 
 ### Javascript:
 
@@ -213,6 +215,10 @@ Please read the [CONTRIBUTING.md](https://github.com/mhulse/jquery-ion/blob/gh-p
 ## Feedback
 
 [Bugs? Constructive feedback? Questions?](https://github.com/mhulse/jquery-ion/issues/new?title=Your%20code%20sucks!&body=Here%27s%20why%3A%20)
+
+## Changelog
+
+* [v1.0.0 milestones](https://github.com/mhulse/jquery-ion/issues?direction=desc&milestone=1&page=1&sort=updated&state=open)
 
 ## [Release history](https://github.com/mhulse/jquery-ion/releases)
 
