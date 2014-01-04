@@ -6,6 +6,12 @@
 
 ---
 
+## Demo
+
+[![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-ion/&chs=240x240)](http://mhulse.github.com/jquery-ion/demo/)
+
+**Source:** [jquery.ion.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.js) | [jquery.ion.min.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.min.js)
+
 ## Installation
 
 There are several ways to install this code:
@@ -61,9 +67,7 @@ There are only two requirments:
 1. The "panel" element immidiately follows its related "head" element.
 1. The plugin has been initialized on a parent element.
 
-... follow those rules and you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
-
-Next, apply the above class to any `<a>` tag:
+... follow those two rules and you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
 
 ### Styling:
 
@@ -190,7 +194,7 @@ Option | Description | Default
  <h1 id="foo" class="ion-head">FOO</h1>
  ```
 
- Last, add the `classSingle` class to any link, with an `href` that targets the ID set on the head above:
+ Last, add the `classSingle` class to any link; the `href` value should target the desired head ID:
 
  ```html
  <a class="ion-single" href="#foo">FOO</a>
@@ -201,12 +205,6 @@ Option | Description | Default
  [http://mhulse.github.io/jquery-ion/demo/#moof](http://mhulse.github.io/jquery-ion/demo/#moof)
 
  This feature is turned on by default.
-
-## Demo
-
-[![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-ion/&chs=240x240)](http://mhulse.github.com/jquery-ion/demo/)
-
-**Source:** [jquery.ion.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.js) | [jquery.ion.min.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.min.js)
 
 ## Contributing
 

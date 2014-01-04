@@ -227,7 +227,61 @@
 					
 					.removeData(NS) // -->
 					
-					; // More here.
+					//----------------------------------
+					// Find heads:
+					//----------------------------------
+					
+					.find('.' + data.settings.classHead) // -->
+					
+					//----------------------------------
+					// Remove data:
+					//----------------------------------
+					
+					.removeData(NS + '.toggled')
+					
+					//----------------------------------
+					// Remove handler:
+					//----------------------------------
+					
+					.off('click.' + NS)
+					
+					//----------------------------------
+					// Remove selected class:
+					//----------------------------------
+					
+					.removeClass(data.settings.classHeadSelected) // -->
+					
+					//----------------------------------
+					// Find panels:
+					//----------------------------------
+					
+					.next('.' + data.settings.classPanel) // -->
+					
+					//----------------------------------
+					// Remove open class:
+					//----------------------------------
+					
+					.removeClass(data.settings.classPanelOpen) // -->
+					
+					//----------------------------------
+					// Remove inline style:
+					//----------------------------------
+					
+					.css('display', ''); // Smack!
+					
+					//----------------------------------
+					// External single clicks?
+					//----------------------------------
+					
+					if (data.settings.classSingle.length) {
+						
+						//----------------------------------
+						// Remove handler:
+						//----------------------------------
+						
+						$('.' + data.settings.classSingle).off('click.' + NS);
+						
+					}
 					
 				}
 				
