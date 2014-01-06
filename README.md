@@ -182,7 +182,7 @@ Option | Description | Default
 
  **Note** the nesting order of the single (`'`) and double (`"`) quotes.
 
-2. The accordion can be triggered via external clicks (e.g., page navigation).
+1. The accordion can be triggered via external clicks (e.g., page navigation).
 
  To enable this featue, set a class name for the `classSingle` option:
 
@@ -202,11 +202,9 @@ Option | Description | Default
  <a class="ion-single" href="#foo">FOO</a>
  ```
 
-3. Accordion panels can be opened via URI hash, like so:
+1. Accordion panels can be opened via URI hash, like so:
 
  [http://mhulse.github.io/jquery-ion/demo/#moof](http://mhulse.github.io/jquery-ion/demo/#moof)
-
- This feature is turned on by default.
 
 ## Contributing
 

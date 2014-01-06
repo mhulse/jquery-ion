@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2014 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 1.0.0
- * @date 2014/01/03
+ * @date 2014/01/06
  */
 
 // http://www.jacklmoore.com/demo/accordion.html
@@ -140,7 +140,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Merge defaults, options and data attribute options.
+					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Recursively merge defaults, options and data attribute options.
 					
 					//----------------------------------
 					// Namespaced instance data:
@@ -279,7 +279,7 @@
 						// Remove handler:
 						//----------------------------------
 						
-						$('.' + data.settings.classSingle).off('click.' + NS);
+						$('.' + data.settings.classSingle).off('click.' + NS); // Bah-zing!
 						
 					}
 					
@@ -408,7 +408,7 @@
 				
 				_open.call($heads_active.add(
 					$panels_active.prev('.' + data.settings.classHead) // @TODO: Should I worry about dupes?
-				),data);
+				), data);
 				
 				//----------------------------------
 				// External single clicks?

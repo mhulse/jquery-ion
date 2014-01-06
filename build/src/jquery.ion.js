@@ -127,7 +127,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Merge defaults, options and data attribute options.
+					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Recursively merge defaults, options and data attribute options.
 					
 					//----------------------------------
 					// Namespaced instance data:
@@ -266,7 +266,7 @@
 						// Remove handler:
 						//----------------------------------
 						
-						$('.' + data.settings.classSingle).off('click.' + NS);
+						$('.' + data.settings.classSingle).off('click.' + NS); // Bah-zing!
 						
 					}
 					
@@ -395,7 +395,7 @@
 				
 				_open.call($heads_active.add(
 					$panels_active.prev('.' + data.settings.classHead) // @TODO: Should I worry about dupes?
-				),data);
+				), data);
 				
 				//----------------------------------
 				// External single clicks?
