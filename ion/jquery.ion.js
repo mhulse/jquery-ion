@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2014 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 1.0.0
- * @date 2014/01/06
+ * @date 2014/02/13
  */
 
 // http://www.jacklmoore.com/demo/accordion.html
@@ -77,7 +77,7 @@
 		classPanelOpen    : NS + '-panel-open',                  // Panel "open" class.
 		classSingle       : '',                                  // Have "external" link(s) open a single panel based on its hash?
 		animIn            : { opacity: 'show', height: 'show' }, // Animation object used to show the panels.
-		animOut           : { opacity: 'show', height: 'show' }, // IBID, but for hiding.
+		animOut           : { opacity: 'hide', height: 'hide' }, // IBID, but for hiding.
 		easeIn            : 'swing',                             // Easing function in.
 		easeOut           : 'swing',                             // Easing function out.
 		speedIn           : 'normal',                            // Animation speed in.
