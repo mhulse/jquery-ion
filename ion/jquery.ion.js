@@ -358,7 +358,7 @@
 			$panels = $this.find('.' + data.settings.classPanel);
 			
 			//----------------------------------
-			// Cache heads and panels:
+			// Cached heads and panels?
 			//----------------------------------
 			
 			if ($heads.length && $panels.length) { // Compare length as well?
