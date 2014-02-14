@@ -216,10 +216,12 @@ Please read the [CONTRIBUTING.md](https://github.com/mhulse/jquery-ion/blob/gh-p
 
 ## Changelog
 
-* [v1.0.0 milestones](https://github.com/mhulse/jquery-ion/issues?direction=desc&milestone=1&page=1&sort=updated&state=open)
+* [v1.0.1 milestones](https://github.com/mhulse/jquery-ion/issues?direction=desc&milestone=2&page=1&sort=updated&state=closed)
+* [v1.0.0 milestones](https://github.com/mhulse/jquery-ion/issues?direction=desc&milestone=1&page=1&sort=updated&state=closed)
 
 ## [Release history](https://github.com/mhulse/jquery-ion/releases)
 
+* 2014-02-14   [v1.0.1](https://github.com/mhulse/jquery-ion/releases/tag/v1.0.1)   A default fix.
 * 2014-01-03   [v1.0.0](https://github.com/mhulse/jquery-ion/releases/tag/v1.0.0)   Hello world!
 
 ---
