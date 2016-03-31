@@ -7,7 +7,7 @@
  * @docs https://github.com/mhulse/jquery-ion
  * @copyright Copyright (c) 2016 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
- * @version 1.0.1
+ * @version 1.1.0
  * @date 2016/03/30
  */
 
@@ -64,7 +64,7 @@
 	 * @see rgne.ws/12p2bvl
 	 */
 	
-	var console = (window.console || { log : function() {}, warn : function() {} }),
+	var console = (window.console || { log : $.noop, warn : $.noop }),
 	
 	//----------------------------------
 	
