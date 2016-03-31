@@ -1,6 +1,6 @@
 {
     "name": "ion",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "main": [
         "./ion/jquery.ion.js"
     ],

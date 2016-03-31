@@ -5,6 +5,19 @@
  * @author Micky Hulse
  * @link http://mky.io
  * @docs https://github.com/mhulse/jquery-ion
+ * @copyright Copyright (c) 2016 Micky Hulse.
+ * @license Released under the Apache License, Version 2.0.
+ * @version 1.0.1
+ * @date 2016/03/30
+ */
+
+/**
+ * Ion
+ * Super simple jQuery-powered accordions.
+ *
+ * @author Micky Hulse
+ * @link http://mky.io
+ * @docs https://github.com/mhulse/jquery-ion
  * @copyright Copyright (c) 2014 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
  * @version 1.0.1
@@ -231,7 +244,7 @@
 					// Find heads:
 					//----------------------------------
 					
-					.find('.' + data.settings.classHead) // -->
+					.children('.' + data.settings.classHead) // -->
 					
 					//----------------------------------
 					// Remove data:
@@ -354,8 +367,8 @@
 			// Cache heads and panels:
 			//----------------------------------
 			
-			$heads = $this.find('.' + data.settings.classHead);
-			$panels = $this.find('.' + data.settings.classPanel);
+			$heads = $this.children('.' + data.settings.classHead);
+			$panels = $this.children('.' + data.settings.classPanel);
 			
 			//----------------------------------
 			// Cached heads and panels?
