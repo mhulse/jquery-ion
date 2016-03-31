@@ -26,7 +26,7 @@
 			
 		}
 		
-		body > h1 { text-align: center; }
+		body > h3 { text-align: center; }
 		
 		.wrap {
 			border-width: 0 1px 1px;
@@ -94,99 +94,67 @@
 </head>
 <body>
 	
-	<h1><a href="https://github.com/mhulse/jquery-ion">Ion</a> demo</h1>
+	<h3><a href="https://github.com/mhulse/jquery-ion">Ion</a> demo</h3>
 	
 	<hr>
 	
 	<main>
 		
+		<h4>
+			<a class="ion-single" href="#foo">FOO</a>,
+			<a class="ion-single" href="#bar">BAR</a>,
+			<a class="ion-single" href="#baz">BAZ</a>,
+			<a class="ion-single" href="#eek">EEK</a>,
+			<a class="ion-single" href="#moof">MOOF</a>
+			&amp;
+			<a class="ion-single" href="#gleep">GLEEP</a>!
+		</h4>
+		
 		<section class="ion" data-ion-options='{ "allowMultiple" : false, "alwaysOpen" : true }'>
 			
-			<h1><a class="ion-single" href="#foo">FOO</a>, <a class="ion-single" href="#bar">BAR</a>, <a class="ion-single" href="#baz">BAZ</a>, <a class="ion-single" href="#eek">EEK</a>, <a class="ion-single" href="#moof">MOOF</a> &amp; <a class="ion-single" href="#gleep">GLEEP</a>!</h1>
-			
-			<section>
-				
-				<h1 id="foo" class="ion-head">FOO</h1>
-				
-				<div class="ion-panel">
-					
-					<div class="wrap">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
-					</div>
-					
+			<h3 id="foo" class="ion-head">FOO</h3>
+			<div class="ion-panel">
+				<div class="wrap">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
 				</div>
-				
-			</section>
+			</div>
 			
-			<section>
-				
-				<h1 id="bar" class="ion-head">BAR</h1>
-				
-				<div class="ion-panel ion-panel-open">
-					
-					<div class="wrap">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
-					</div>
-					
+			<h3 id="bar" class="ion-head">BAR</h3>
+			<div class="ion-panel ion-panel-open">
+				<div class="wrap">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
 				</div>
-				
-			</section>
+			</div>
 			
-			<section>
-				
-				<h1 id="baz" class="ion-head ion-head-selected">BAZ</h1>
-				
-				<div class="ion-panel">
-					
-					<div class="wrap">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
-					</div>
-					
-				</div>
-				
-			</section>
 			
-			<section>
-				
-				<h1 id="eek" class="ion-head">EEK</h1>
-				
-				<div class="ion-panel">
-					
-					<div class="wrap">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
-					</div>
-					
+			<h3 id="baz" class="ion-head ion-head-selected">BAZ</h3>
+			<div class="ion-panel">
+				<div class="wrap">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
 				</div>
-				
-			</section>
+			</div>
 			
-			<section>
-				
-				<h1 id="moof" class="ion-head">MOOF</h1>
-				
-				<div class="ion-panel">
-					
-					<div class="wrap">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
-					</div>
-					
+			<h3 id="eek" class="ion-head">EEK</h3>
+			<div class="ion-panel">
+				<div class="wrap">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
 				</div>
-				
-			</section>
+			</div>
 			
-			<section>
-				
-				<h1 id="gleep" class="ion-head">GLEEP</h1>
-				
-				<div class="ion-panel">
-					
-					<div class="wrap">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
-					</div>
-					
+			<h3 id="moof" class="ion-head">MOOF</h3>
+			<div class="ion-panel">
+				<div class="wrap">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
 				</div>
-				
-			</section>
+			</div>
+			
+			<h3 id="gleep" class="ion-head">GLEEP</h3>
+			
+			<div class="ion-panel">
+				<div class="wrap">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus varius urna, ac venenatis arcu convallis consequat. In augue est, posuere auctor facilisis varius, dictum ac risus. Donec nibh justo, aliquam sed tempus quis, lobortis sed orci. Aliquam condimentum, erat eget luctus commodo, mauris velit porta nulla, cursus placerat lectus tortor ac enim. Phasellus scelerisque luctus ligula, a consequat orci posuere rutrum. Sed ipsum nisi, ullamcorper eget fermentum a, dignissim sed dolor. Nam arcu nulla, aliquam non molestie vitae, condimentum at lorem. Nam et consectetur augue.</p>
+				</div>
+			</div>
 			
 		</section>
 		
@@ -205,7 +173,7 @@
 		
 		$(document).ready(function() {
 			
-			var console = (window.console || { log : function() {} });
+			var console = (window.console || { log : $.noop });
 			
 			$('.ion').ion({
 				

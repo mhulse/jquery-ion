@@ -7,21 +7,8 @@
  * @docs https://github.com/mhulse/jquery-ion
  * @copyright Copyright (c) 2016 Micky Hulse.
  * @license Released under the Apache License, Version 2.0.
- * @version 1.1.0
+ * @version 2.0.0
  * @date 2016/03/30
- */
-
-/**
- * Ion
- * Super simple jQuery-powered accordions.
- *
- * @author Micky Hulse
- * @link http://mky.io
- * @docs https://github.com/mhulse/jquery-ion
- * @copyright Copyright (c) 2014 Micky Hulse.
- * @license Released under the Apache License, Version 2.0.
- * @version 1.0.1
- * @date 2014/02/13
  */
 
 // http://www.jacklmoore.com/demo/accordion.html

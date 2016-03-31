@@ -33,41 +33,25 @@ Setting up Ion is simple ...
 Really, the markup is up to you ... Here's one way of doing it:
 
 ```html
-<section class="ion">
+<div class="ion">
 	
-	<h1>...</h1>
+	<h3 class="ion-head">FOO</h3>
+	<div class="ion-panel">...</div>
 	
-	<section>
-		
-		<h1 class="ion-head">FOO</h1>
-		
-		<div class="ion-panel">...</div>
-		
-	</section>
+	<h3 class="ion-head">FOO</h3>
+	<div class="ion-panel">...</div>
 	
-	<section>
-		
-		<h1 class="ion-head">BAR</h1>
-		
-		<div class="ion-panel">...</div>
-		
-	</section>
+	<h3 class="ion-head">FOO</h3>
+	<div class="ion-panel">...</div>
 	
-	<section>
-		
-		<h1 class="ion-head">BAZ</h1>
-		
-		<div class="ion-panel">...</div>
-		
-	</section>
-	
-</section>
+</div>
 ```
 
-There are only two requirments:
+There are only two requirements:
 
-1. The "panel" element immidiately follows its related "head" element.
 1. The plugin has been initialized on a parent element.
+1. The ”panel” element immediately follows its related ”head” element.
+1. You use `ion-head` and `ion-panel` classes.
 
 ... follow those two rules and you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
 

@@ -1,16 +1,3 @@
-/**
- * Ion
- * Super simple jQuery-powered accordions.
- *
- * @author Micky Hulse
- * @link http://mky.io
- * @docs https://github.com/mhulse/jquery-ion
- * @copyright Copyright (c) 2014 Micky Hulse.
- * @license Released under the Apache License, Version 2.0.
- * @version 1.0.1
- * @date 2014/02/13
- */
-
 // http://www.jacklmoore.com/demo/accordion.html
 // http://stackoverflow.com/questions/9948306/overriding-jquery-plugin-options-with-html5-data-attributes
 // https://medium.com/web-design-tutorials/29b39ac24b38
