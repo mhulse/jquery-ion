@@ -47,7 +47,7 @@ Really, the markup is up to you ... Here's one way of doing it:
 </div>
 ```
 
-There are only two requirements:
+There are only a few requirements:
 
 1. The plugin has been initialized on a parent element.
 1. The ”panel” element immediately follows its related ”head” element.
