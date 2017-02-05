@@ -40,6 +40,7 @@
 		
 		alwaysOpen        : false,                               // Must one panel always be open?
 		allowMultiple     : false,                               // Allow multiple panels to be open at same time?
+		useHash           : false,                               // Use URI hash to open or close accordion panels?
 		classHead         : NS + '-head',                        // Head class.
 		classHeadSelected : NS + '-head-selected',               // Head "selected" class.
 		classPanel        : NS + '-panel',                       // Panel class.
@@ -336,9 +337,13 @@
 				// URI hash to select active?:
 				//----------------------------------
 				
-				$heads
-					.filter(location.hash)                      // If there's a hash ID in the URI that matches a head ID ...
-					.addClass(data.settings.classHeadSelected); // ... then apply the selected class to head.
+				if (data.settings.useHash) {
+					
+					$heads
+						.filter(location.hash)                      // If there's a hash ID in the URI that matches a head ID ...
+						.addClass(data.settings.classHeadSelected); // ... then apply the selected class to head.
+					
+				}
 				
 				//----------------------------------
 				// Cache active heads:

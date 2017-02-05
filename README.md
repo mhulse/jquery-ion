@@ -9,7 +9,7 @@ There are several ways to install this code:
 1. Download as a [`zip`](https://github.com/mhulse/jquery-ion/archive/master.zip).
 1. Clone it: `$ git clone https://github.com/mhulse/jquery-ion.git`.
 1. Fork it and clone: `$ git clone git@github.com:USERNAME/jquery-ion.git`.
-1. Just grab the relevant [JS](jquery.ion.js) ([uglified](jquery.ion.min.js)) files.
+1. Just grab [jquery.ion.js](jquery.ion.js) and put it where you need it.
 
 ## Usage
 
@@ -88,6 +88,7 @@ Here's an example with all the options:
 			
 			alwaysOpen        : false,
 			allowMultiple     : false,
+			useHash           : false,
 			classHead         : 'ion-head',
 			classHeadSelected : 'ion-head-selected',
 			classPanel        : 'ion-panel',
@@ -122,6 +123,7 @@ Option | Description | Default
 :-- | :-- | :--
 `alwaysOpen` | Must one panel always be open? | `false`
 `allowMultiple` | Allow multiple panels to be open at same time? | `false`
+`useHash` | Use URI hash to open or close accordion panels? | `false`
 `classHead` | Head class. | `ion-head`
 `classHeadSelected` | Head "selected" class. | `ion-selected`
 `classPanel` | Panel class. | `ion-panel`
