@@ -1,21 +1,3 @@
-// http://www.jacklmoore.com/demo/accordion.html
-// http://stackoverflow.com/questions/9948306/overriding-jquery-plugin-options-with-html5-data-attributes
-// https://medium.com/web-design-tutorials/29b39ac24b38
-// http://www.adipalaz.com/scripts/jquery/jquery.nestedAccordion.txt
-
-//----------------------------------
-
-// Notes to self:
-//console.profile('profile foo');
-// ... code here ...
-//console.profileEnd('profile foo');
-// ... or:
-// console.time('timing foo');
-// ... code here ...
-// console.timeEnd('timing foo');
-
-//----------------------------------
-
 (function($, window, document, undefined) {
 	
 	/**
