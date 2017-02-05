@@ -4,25 +4,14 @@
 
 **Super simple jQuery-powered accordions.**
 
----
-
-## Demo
-
-Click or scan:
-
-[![qr code](http://chart.apis.google.com/chart?cht=qr&chl=https://github.com/mhulse/jquery-ion/&chs=240x240)](http://mhulse.github.com/jquery-ion/demo/)
-
-**Source:** [jquery.ion.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.js) | [jquery.ion.min.js](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.min.js)
-
 ## Installation
 
 There are several ways to install this code:
 
-1. Download as a [`zip`](https://github.com/mhulse/jquery-ion/archive/gh-pages.zip).
+1. Download as a [`zip`](/archive/master.zip).
 1. Clone it: `$ git clone https://github.com/mhulse/jquery-ion.git`.
 1. Fork it and clone: `$ git clone git@github.com:USERNAME/jquery-ion.git`.
-1. Just grab the relevant [JS](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.js) ([uglified](https://raw.github.com/mhulse/jquery-ion/gh-pages/ion/jquery.ion.min.js)) files.
-1. Using [Bower](http://bower.io/): `$ bower install https://github.com/mhulse/jquery-ion.git`.
+1. Just grab the relevant [JS](jquery.ion.js) ([uglified](jquery.ion.min.js)) files.
 
 ## Usage
 
