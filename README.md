@@ -1,14 +1,12 @@
-# Ion
+# jQuery Ion
 
-<a href="http://gruntjs.com/" title="Built with Grunt"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt" align="right"></a>
-
-**Super simple jQuery-powered accordions.**
+**A lightweight jQuery-powered accordion.**
 
 ## Installation
 
 There are several ways to install this code:
 
-1. Download as a [`zip`](/archive/master.zip).
+1. Download as a [`zip`](https://github.com/mhulse/jquery-ion/archive/master.zip).
 1. Clone it: `$ git clone https://github.com/mhulse/jquery-ion.git`.
 1. Fork it and clone: `$ git clone git@github.com:USERNAME/jquery-ion.git`.
 1. Just grab the relevant [JS](jquery.ion.js) ([uglified](jquery.ion.min.js)) files.
@@ -17,7 +15,7 @@ There are several ways to install this code:
 
 Setting up Ion is simple ...
 
-### Markup:
+### Markup
 
 Really, the markup is up to you ... Here's one way of doing it:
 
@@ -44,16 +42,16 @@ There are only a few requirements:
 
 ... follow those two rules and you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
 
-### Styling:
+### Styling
 
-The accordion can be styled as you see fit; check out the [demo page](http://mhulse.github.com/jquery-ion/demo/) for a complete working example.
+The accordion can be styled as you see fit; check out the [demo page](demo/) for a complete working example.
 
-### Javascript:
+### JavaScript
 
-Put [jQuery](http://jquery.com/) on your page:
+Put the latest version of [jQuery](http://jquery.com/) on your page:
 
 ```html
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 ```
 
 ... and link to the plugin:
@@ -67,7 +65,7 @@ Next, Ion can be instantiated like so:
 ```html
 <script>
 	
-	$(document).ready(function() {
+	$(function() {
 		
 		$('.ion').ion();
 		
@@ -81,7 +79,7 @@ Here's an example with all the options:
 ```html
 <script>
 	
-	$(document).ready(function() {
+	$(function() {
 		
 		var console = (window.console || { log : function() {} });
 		
@@ -141,7 +139,7 @@ Option | Description | Default
 `onBeforeHide` | Before hide animation begins. | `$.noop`
 `onHide` | After hide animation ends. | `$.noop`
 
-### Advanced:
+### Advanced
 
 1. All options can be overidden via an [HTML5 data attribute](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes) named `data-ion-options`; the value of this attribute **must** be valid [JSON](http://json.org/) syntax.
 
@@ -179,34 +177,16 @@ Option | Description | Default
 
  [http://mhulse.github.io/jquery-ion/demo/#moof](http://mhulse.github.io/jquery-ion/demo/#moof)
 
-## Contributing
-
-Please read the [CONTRIBUTING.md](https://github.com/mhulse/jquery-ion/blob/gh-pages/CONTRIBUTING.md).
-
-## Feedback
-
-[Bugs? Constructive feedback? Questions?](https://github.com/mhulse/jquery-ion/issues/new?title=Your%20code%20sucks!&body=Here%27s%20why%3A%20)
-
-## Changelog
-
-* [v1.0.1 milestones](https://github.com/mhulse/jquery-ion/issues?direction=desc&milestone=2&page=1&sort=updated&state=closed)
-* [v1.0.0 milestones](https://github.com/mhulse/jquery-ion/issues?direction=desc&milestone=1&page=1&sort=updated&state=closed)
-
-## [Release history](https://github.com/mhulse/jquery-ion/releases)
-
-* 2014-02-14   [v1.0.1](https://github.com/mhulse/jquery-ion/releases/tag/v1.0.1)   A default fix.
-* 2014-01-03   [v1.0.0](https://github.com/mhulse/jquery-ion/releases/tag/v1.0.0)   Hello world!
-
 ---
 
 #### LEGAL
 
-Copyright &copy; 2013-2014 [Micky Hulse](http://mky.io)
+Copyright © 2013-17 [Michael Hulse](http://mky.io).
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
+Licensed under the Apache License, Version 2.0 (the “License”); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
 
 [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-<img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/octocat.png" alt=":octocat:" title=":octocat:" class="emoji">
+<img src="https://github.global.ssl.fastly.net/images/icons/emoji/octocat.png">
