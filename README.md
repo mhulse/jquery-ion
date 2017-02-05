@@ -178,6 +178,14 @@ Option | Description | Default
 
  [http://mhulse.github.io/jquery-ion/demo/#moof](http://mhulse.github.io/jquery-ion/demo/#moof)
 
+1. Close nested Ion accordions like so:
+
+ ```js
+ onHide: function($head, $panel) {
+    $panel.find('.ion-head-selected').click(); // Simulate click to collapse children accordions.
+}
+```
+
 ---
 
 #### LEGAL
