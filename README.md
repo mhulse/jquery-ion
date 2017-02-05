@@ -37,8 +37,9 @@ Really, the markup is up to you ... Here's one way of doing it:
 There are only a few requirements:
 
 1. The plugin has been initialized on a parent element.
+1. All ”panel” and ”head” elements are immediate children of parent element.
 1. The ”panel” element immediately follows its related ”head” element.
-1. You use `ion-head` and `ion-panel` classes; these classes **are required**.
+1. You use `ion-head` and `ion-panel` classes.
 
 ... follow those two rules and you _should_ be golden. <img width="20" height="20" align="absmiddle" src="https://github.global.ssl.fastly.net/images/icons/emoji/moneybag.png" alt=":moneybag:" title=":moneybag:" class="emoji">
 
