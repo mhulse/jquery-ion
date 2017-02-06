@@ -110,7 +110,7 @@
 					// Initialize:
 					//----------------------------------
 					
-					settings = $.extend(true, {}, defaults, options, $this.data(NS + 'Options')); // Recursively merge defaults, options and data attribute options.
+					settings = $.extend(false, {}, defaults, options, $this.data(NS + 'Options')); // Recursively merge defaults, options and data attribute options.
 					
 					//----------------------------------
 					// Namespaced instance data:

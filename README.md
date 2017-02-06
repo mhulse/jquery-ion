@@ -188,6 +188,28 @@ Option | Description | Default
 }
 ```
 
+1. If you just want to show and hide panels, pass these options:
+
+ ```js
+$('.ion').ion({
+	animIn: { opacity: 'show' },
+	animOut: { opacity: 'hide' },
+	speedIn: 0,
+	speedOut: 0
+});
+```
+
+ … **or**, do this:
+
+ ```js
+onBeforeShow: function($head, $panel) {
+	jQuery.fx.off = true;
+}
+onHide: function($head, $panel) {
+	jQuery.fx.off = false;
+}
+```
+
 ---
 
 #### LEGAL
